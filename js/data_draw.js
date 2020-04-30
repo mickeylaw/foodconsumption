@@ -6,7 +6,7 @@ var rowConverter = function(d) {
         Mean: Number(d.Mean)
     };
 }
-d3.csv("/data/austria3.csv", function(data) { 
+d3.csv("data/austria3.csv", function(data) { 
     var allGroup = ["Fats and oils", "Carbohydrates", "Fruit","Meats","Milk and dairy","Vegetables"]
 
     // Reformat the data: we need an array of arrays of {x, y} tuples

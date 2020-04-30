@@ -13,7 +13,7 @@ var uk_svg = d3.select("#uk_ageplot")
           "translate(" + uk_margin.left + "," + uk_margin.top + ")");
 
 //Read the data
-d3.csv("/data/uk3.csv", function(data) {
+d3.csv("data/uk3.csv", function(data) {
 
     // List of groups (here I have one group per column)
     var allGroup = ["Fats", "Carbohydrates", "Fruit","Meats","Milk","Vegetables"]
