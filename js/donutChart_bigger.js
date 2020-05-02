@@ -64,8 +64,8 @@ var ukData = [{Country: "United Kingdom", FoodexL1: "Fats & oils", Mean: 14, tot
 
 
 
-var d_width = 560;
-var d_height = 300;
+var d_width = 520;
+var d_height = 400;
 var d_radius = Math.min(d_width, d_height) / 2;
 var donutWidth = 100;
 var color = d3.scaleOrdinal()
@@ -76,7 +76,7 @@ var svg = d3.select('#donut')
     .attr('width', d_width)
     .attr('height', d_height)
     .append('g')
-    .attr('transform', 'translate(' + (d_width / 2 ) +
+    .attr('transform', 'translate(' + (d_width / 2 + 65) +
         ',' + (d_height / 2 + 45 ) + ')');
 
 var arc = d3.arc()
@@ -196,7 +196,7 @@ function midAngle(d){
 
 var newarc = d3
     .arc()
-    .outerRadius(d_height/2)
+    .outerRadius(d_height/2-4)
     .innerRadius(0);
 
 var annotation = svg.selectAll('.annotation')
@@ -289,7 +289,7 @@ function change(data, countryName, evt) {
         }).sort(null)(data);
 
     var d_width = 560;
-    var d_height = 300;
+    var d_height = 400;
     var radius = Math.min(d_width, d_height) / 2;
     var donutWidth = 100;
 

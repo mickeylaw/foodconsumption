@@ -83,7 +83,7 @@ carb_u
     .attr("y", function(d) { return carb_y(d.Mean); })
     .attr("width", carb_x.bandwidth())
     .attr("height", function(d) { return c_height - carb_y(d.Mean); })
-    .attr("fill", "#BF9C00")
+    .attr("fill", "#B0A05D")
     .on("mouseover",function(d) {
         var subgroupName = d.Country;
         var subgroupValue = d.Mean;
@@ -143,7 +143,7 @@ function update_carb(data, carbName, evt) {
         .attr("y", function(d) { return carb_y(d.Mean); })
         .attr("width", carb_x.bandwidth())
         .attr("height", function(d) { return c_height - carb_y(d.Mean); })
-        .attr("fill", "#BF9C00");
+        .attr("fill", "#B0A05D");
         
     var i, x, tablinks;
     x = document.getElementsByClassName("carbs");
