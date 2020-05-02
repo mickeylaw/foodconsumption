@@ -4,6 +4,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text:700,700i&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 
 
 body { background-color: #ececec; font-size: 16px; line-height: 1.8; color: #6c757d; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Proxima Nova", "Proxima Nova Semibold", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
@@ -13,14 +15,14 @@ body { background-color: #ececec; font-size: 16px; line-height: 1.8; color: #6c7
 ::selection { background: yellow; }*/
 
 h1 {
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 600;
     color: #53575f;
 }
 
 h2{
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 500;
     color: #53575f;
@@ -28,7 +30,7 @@ h2{
 
 
 h4 {
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -36,7 +38,7 @@ h4 {
 }
 
 h6 {
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -44,7 +46,7 @@ h6 {
 }
 
 h3 {
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 300;
     color: #7f8490;
@@ -59,7 +61,7 @@ h5 {
 }
 
 p {
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 15px;
@@ -68,7 +70,7 @@ p {
 }
 
 span, strong{
-    font-family: 'Proxima Nova', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
     color: #53575f;
@@ -90,7 +92,7 @@ a:hover, a:active, a:focus { text-decoration: none; outline: none; }
 
 .templateux-navbar .site-logo { position: relative; top: 5px; z-index: 9999; }
 
-.templateux-navbar .site-logo a { font-family: 'Proxima Nova', sans-serif; font-style: normal; font-weight: 600; font-size: 24px; color: #3c3c3c; letter-spacing: 1px; line-height: 100%}
+.templateux-navbar .site-logo a { font-family: 'Lato', sans-serif; font-style: normal; font-weight: 600; font-size: 24px; color: #3c3c3c; letter-spacing: 1px; line-height: 100%}
 
 .templateux-navbar .templateux-menu { position: relative; }
 
@@ -104,7 +106,7 @@ a:hover, a:active, a:focus { text-decoration: none; outline: none; }
 
 .templateux-navbar .templateux-menu ul li a:hover:before { width: 100%; }
 
-.templateux-navbar .templateux-menu ul li a { font-family: 'Proxima Nova', sans-serif; font-style: normal; font-weight: 400; }
+.templateux-navbar .templateux-menu ul li a { font-family: 'Lato', sans-serif; font-style: normal; font-weight: 400; }
 
 .templateux-navbar .templateux-menu ul li.active > a:before { width: 100%; }
 
@@ -173,7 +175,7 @@ a:hover, a:active, a:focus { text-decoration: none; outline: none; }
 
 .templateux-portfolio-gridinin { position: relative; margin-top: -100px; margin-bottom: 300px;}
 
-.templateux-portfolio-grid span { font-family: 'Proxima Nova', sans-serif; font-style: normal; font-weight: 400; color: #000;}
+.templateux-portfolio-grid span { font-family: 'Lato', sans-serif; font-style: normal; font-weight: 400; color: #000;}
 
 @media (max-width: 991.98px) { .templateux-portfolio-grid { margin-top: -50px; } }
 
@@ -283,7 +285,7 @@ textarea.form-control { height: inherit; }
 
 .templateux-media h3 { font-size: 18px; color: #dc3545; }
 
-.templateux-media .icon span { font-family: 'Proxima Nova', sans-serif; font-style: normal; font-weight: 400; font-size: 40px; color: #ccc; }
+.templateux-media .icon span { font-family: 'Lato', sans-serif; font-style: normal; font-weight: 400; font-size: 40px; color: #ccc; }
 
 .owl-carousel .owl-dots { position: relative; text-align: center; width: 100%; }
 
@@ -321,13 +323,13 @@ textarea.form-control { height: inherit; }
 
 .work-detail { margin-bottom: 50px; }
 
-.work-detail .caption { font-family: 'Proxima Nova', sans-serif; font-style: normal; display: block; font-weight: 500; font-size: 15px; color: ##53575f; text-align: center; }
+.work-detail .caption { font-family: 'Lato', sans-serif; font-style: normal; display: block; font-weight: 500; font-size: 15px; color: ##53575f; text-align: center; }
 
-.work-detail .cap { font-family: 'Proxima Nova', sans-serif; font-style: normal; display: block; font-weight: 300; font-size: 15px; color: #7f8490; text-align: center; }
+.work-detail .cap { font-family: 'Lato', sans-serif; font-style: normal; display: block; font-weight: 300; font-size: 15px; color: #7f8490; text-align: center; }
 
 .work-detail strong { display: block; font-weight: normal; color: #53575f;  }
 
-.intro-new p { font-family: 'Proxima Nova', sans-serif; font-style: normal; display: block; font-weight: 300; font-size: 15px; color: #7f8490; text-align: center; }
+.intro-new p { font-family: 'Lato', sans-serif; font-style: normal; display: block; font-weight: 300; font-size: 15px; color: #7f8490; text-align: center; }
 
 .custom-pagination { width: 100%; text-align: center; display: inline-block; }
 
@@ -530,7 +532,7 @@ textarea.form-control { height: inherit; }
     float: right;
 }
 
-.btb { font-family: 'Proxima Nova', sans-serif; font-style: normal; font-weight: 400; }
+.btb { font-family: 'Lato', sans-serif; font-style: normal; font-weight: 400; }
 
 .btb a:hover { color: #7f8490; }
 
