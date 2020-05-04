@@ -1,16 +1,16 @@
 // set the dimensions and margins of the graph
-var age_margin = {top: 10, right: 10, bottom: 30, left: 50},
-    age_width = 650 - age_margin.left - age_margin.right,
-    age_height = 400 - age_margin.top - age_margin.bottom;
+var ageo_margin = {top: 10, right: 15, bottom: 30, left: 40},
+    ageo_width = 650 - ageo_margin.left - ageo_margin.right,
+    ageo_height = 450 - ageo_margin.top - ageo_margin.bottom;
 
 // append the svg object to the body of the page
 var age_svg = d3.select("#austria_ageplot")
   .append("svg")
-    .attr("width", age_width + age_margin.left + age_margin.right)
-    .attr("height", age_height + age_margin.top + age_margin.bottom)
+    .attr("width", ageo_width + ageo_margin.left + ageo_margin.right)
+    .attr("height", ageo_height + ageo_margin.top + ageo_margin.bottom)
   .append("g")
     .attr("transform",
-          "translate(" + age_margin.left + "," + age_margin.top + ")");
+          "translate(" + ageo_margin.left + "," + ageo_margin.top + ")");
 
 //Read the data
 d3.csv("data/austria3.csv", function(data) {
@@ -42,18 +42,18 @@ d3.csv("data/austria3.csv", function(data) {
     // Add X axis --> it is a date format
     var x = d3.scaleLinear()
       .domain([0,6])
-      .range([ 0, age_width ])
+      .range([ 0, ageo_width ])
 
     age_svg.append("g")
-      .attr("transform", "translate(0," + age_height + ")")
+      .attr("transform", "translate(0," + ageo_height + ")")
       .call(d3.axisBottom(x).ticks(5).tickFormat(function(d,i) { 
           return ageGroup[i-1]}));
       
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain( [0,400])
-      .range([ age_height, 0]);
+      .domain( [0,520])
+      .range([ ageo_height, 0]);
     age_svg.append("g")
       .call(d3.axisLeft(y));
 

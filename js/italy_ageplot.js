@@ -1,16 +1,16 @@
 // set the dimensions and margins of the graph
-var ita_margin = {top: 10, right: 10, bottom: 30, left: 50},
-    ita_width = 650 - ita_margin.left - ita_margin.right,
-    ita_height = 400 - ita_margin.top - ita_margin.bottom;
+// var ageo_margin = {top: 10, right: 15, bottom: 30, left: 40},
+//     ageo_width = 650 - ageo_margin.left - ageo_margin.right,
+//     ageo_height = 650 - ageo_margin.top - ageo_margin.bottom;
 
 // append the svg object to the body of the page
 var ita_svg = d3.select("#italy_ageplot")
   .append("svg")
-    .attr("width", ita_width + ita_margin.left + ita_margin.right)
-    .attr("height", ita_height + ita_margin.top + ita_margin.bottom)
+    .attr("width", ageo_width + ageo_margin.left + ageo_margin.right)
+    .attr("height", ageo_height + ageo_margin.top + ageo_margin.bottom)
   .append("g")
     .attr("transform",
-          "translate(" + ita_margin.left + "," + ita_margin.top + ")");
+          "translate(" + ageo_margin.left + "," + ageo_margin.top + ")");
 
 //Read the data
 d3.csv("data/italy3.csv", function(data) {
@@ -42,18 +42,18 @@ d3.csv("data/italy3.csv", function(data) {
     // Add X axis --> it is a date format
     var x = d3.scaleLinear()
       .domain([0,6])
-      .range([ 0, ita_width ])
+      .range([ 0, ageo_width ])
 
     ita_svg.append("g")
-      .attr("transform", "translate(0," + ita_height + ")")
+      .attr("transform", "translate(0," + ageo_height + ")")
       .call(d3.axisBottom(x).ticks(5).tickFormat(function(d,i) { 
           return ageGroup[i-1]}));
       
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain( [0,400])
-      .range([ ita_height, 0]);
+      .domain( [0,520])
+      .range([ ageo_height, 0]);
     ita_svg.append("g")
       .call(d3.axisLeft(y));
 

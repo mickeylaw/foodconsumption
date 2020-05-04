@@ -64,20 +64,20 @@ var ukData = [{Country: "United Kingdom", FoodexL1: "Fats & oils", Mean: 14, tot
 
 
 
-var d_width = 520;
-var d_height = 400;
-var d_radius = Math.min(d_width, d_height) / 2;
-var donutWidth = 100;
+var d_width = 300;
+var d_height = 440;
+var d_radius = (Math.min(d_width, d_height)*0.95) / 2;
+var donutWidth = 65;
 var color = d3.scaleOrdinal()
-    .range(["#5A39AC", "#B0A05D", "#279DFF", "#FF5733", "#f2bd0c", "#67D500"]);
+    .range(["#5A39AC", "#AF996A", "#279DFF", "#FF5733", "#f2bd0c", "#67D500"]);
 
 var svg = d3.select('#donut')
     .append('svg')
     .attr('width', d_width)
     .attr('height', d_height)
     .append('g')
-    .attr('transform', 'translate(' + (d_width / 2 + 65) +
-        ',' + (d_height / 2 + 45 ) + ')');
+    .attr('transform', 'translate(' + (d_width * 0.85) +
+        ',' + (d_height * 0.55 ) + ')');
 
 var arc = d3.arc()
     .innerRadius(d_radius - donutWidth)
@@ -117,12 +117,12 @@ var path = svg.selectAll('path')
         donutTip.transition()
             .duration(50)
             .style("opacity", 1);
-        let num = (Math.round((d.data.Mean / d.data.total) * 100)).toString() + '%';
+        // let num = (Math.round((d.data.Mean / d.data.total) * 100)).toString() + '%';
         var subgroupValue = d.data.Mean;
         //var subgroupName = d.data.FoodexL1;
-        donutTip.html(subgroupValue + " grams" + "<br>" + num)
+        donutTip.html(subgroupValue + " grams")
             .style("left", (d3.event.pageX + 10) + "px")
-            .style("top", (d3.event.pageY - 15) + "px");
+            .style("top", (d3.event.pageY - 40) + "px");
 
     })
     .on('mousemove', function (d, i) {
@@ -133,7 +133,7 @@ var path = svg.selectAll('path')
             .duration('50')
             .style("opacity", 1)
             .style("left", (d3.event.pageX+10) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-            .style("top", (d3.event.pageY-80)  + "px");
+            .style("top", (d3.event.pageY - 40)  + "px");
     })
     .on('mouseout', function (d, i) {
         d3.select(this).transition()
@@ -168,13 +168,20 @@ var legend = svg.selectAll('.legend')
 
 legend.append('text')
 .attr('class', 'c-legend')
-.style("fill","#66605c")
+.style("fill","#353535")
 .attr('x', legendRectSize - 1.8*legendSpacing)
-.attr('y', legendRectSize - legendSpacing)
+.attr('y', legendRectSize - 2*legendSpacing)
 .style("text-anchor", "middle")
    .text(function (d) {
        return d.data.Country;
    });
+legend.append('text')
+   .attr('class', 'gram')
+   .style("fill","#8F939B")
+   .attr('x', legendRectSize - 1.8*legendSpacing)
+   .attr('y', legendRectSize + legendSpacing)
+   .style("text-anchor", "middle")
+      .text("Grams per person");
 
 // Now add the annotation. Use the centroid method to get the best coordinates
 
@@ -196,7 +203,7 @@ function midAngle(d){
 
 var newarc = d3
     .arc()
-    .outerRadius(d_height/2-4)
+    .outerRadius(d_width*0.48)
     .innerRadius(0);
 
 var annotation = svg.selectAll('.annotation')
@@ -288,10 +295,10 @@ function change(data, countryName, evt) {
             return d.Mean;
         }).sort(null)(data);
 
-    var d_width = 560;
-    var d_height = 400;
-    var radius = Math.min(d_width, d_height) / 2;
-    var donutWidth = 100;
+    var d_width = 300;
+    var d_height = 429;
+    var radius = (Math.min(d_width, d_height)*0.95) / 2;
+    var donutWidth = 65;
 
     path = d3.select("#donut")
         .selectAll("path")
@@ -321,13 +328,20 @@ function change(data, countryName, evt) {
 
    legend.append('text')
         .attr('class', 'c-legend')
-        .style("fill","#66605c")
+        .style("fill","#353535")
         .attr('x', legendRectSize - 1.8*legendSpacing)
-        .attr('y', legendRectSize - legendSpacing)
+        .attr('y', legendRectSize - 2*legendSpacing)
         .style("text-anchor", "middle")
         .text(function (d) {
             return d.data.Country;
         });
+    legend.append('text')
+        .attr('class', 'gram')
+        .style("fill","#8F939B")
+        .attr('x', legendRectSize - 1.8*legendSpacing)
+        .attr('y', legendRectSize + legendSpacing)
+        .style("text-anchor", "middle")
+           .text("Grams per person");
 
     var annotation = svg.selectAll('.annotation')
         .data(pie)

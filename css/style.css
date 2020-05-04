@@ -4,7 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text:700,700i&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 
 
 
@@ -18,6 +18,7 @@ h1 {
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 600;
+    font-size: 30px;
     color: #53575f;
 }
 
@@ -48,15 +49,15 @@ h6 {
 h3 {
     font-family: 'Lato', sans-serif;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     color: #7f8490;
 }
 
 h5 {
-    font-family: 'Crimson Text', serif;
-    font-style: italic;
-    font-weight: 600;
-    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
     color: #53575f;
 }
 

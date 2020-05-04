@@ -1,19 +1,19 @@
 // // set the dimensions and margins of the graph
-// var ageo_margin = {top: 10, right: 15, bottom: 30, left: 40},
-//     ageo_width = 650 - ageo_margin.left - ageo_margin.right,
-//     ageo_height = 650 - ageo_margin.top - ageo_margin.bottom;
+// var age_margin = {top: 10, right: 15, bottom: 30, left: 40},
+//     age_width = 650 - age_margin.left - age_margin.right,
+//     age_height = 650 - age_margin.top - age_margin.bottom;
 
 // append the svg object to the body of the page
-var bel_svg = d3.select("#belgium_ageplot")
+var ger_svg = d3.select("#germany_ageplot")
   .append("svg")
-    .attr("width", ageo_width + ageo_margin.left + ageo_margin.right)
-    .attr("height", ageo_height + ageo_margin.top + ageo_margin.bottom)
+    .attr("width", age_width + age_margin.left + age_margin.right)
+    .attr("height", age_height + age_margin.top + age_margin.bottom)
   .append("g")
     .attr("transform",
-          "translate(" + ageo_margin.left + "," + ageo_margin.top + ")");
+          "translate(" + age_margin.left + "," + age_margin.top + ")");
 
 //Read the data
-d3.csv("data/belgium3.csv", function(data) {
+d3.csv("data/germany3.csv", function(data) {
 
     // List of groups (here I have one group per column)
     var allGroup = ["Fats", "Carbohydrates", "Fruit","Meats","Milk","Vegetables"]
@@ -41,11 +41,12 @@ d3.csv("data/belgium3.csv", function(data) {
 
     // Add X axis --> it is a date format
     var x = d3.scaleLinear()
-      .domain([0,6])
-      .range([ 0, ageo_width ])
+      .domain([0,7])
+      .range([ 0, age_width ])
 
-    bel_svg.append("g")
-      .attr("transform", "translate(0," + ageo_height + ")")
+    ger_svg.append("g")
+      .attr("class","axis")
+      .attr("transform", "translate(0," + age_height + ")")
       .call(d3.axisBottom(x).ticks(5).tickFormat(function(d,i) { 
           return ageGroup[i-1]}));
       
@@ -53,15 +54,16 @@ d3.csv("data/belgium3.csv", function(data) {
     // Add Y axis
     var y = d3.scaleLinear()
       .domain( [0,520])
-      .range([ ageo_height, 0]);
-    bel_svg.append("g")
+      .range([ age_height, 0]);
+    ger_svg.append("g")
+      .attr("class","axis")
       .call(d3.axisLeft(y));
 
     // Add the lines
     var line = d3.line()
       .x(function(d) { return x(+d.Row) })
       .y(function(d) { return y(+d.Mean) })
-    bel_svg.selectAll("myLines")
+    ger_svg.selectAll("myLines")
       .data(dataReady)
       .enter()
       .append("path")
@@ -72,7 +74,7 @@ d3.csv("data/belgium3.csv", function(data) {
         .style("fill", "none")
 
     // Add the points
-    bel_svg
+    ger_svg
       // First we need to enter in a group
       .selectAll("myDots")
       .data(dataReady)
@@ -117,22 +119,69 @@ d3.csv("data/belgium3.csv", function(data) {
 
 
     // // Add a label at the end of each line
-    bel_svg
-      .selectAll("myLabels")
-      .data(dataReady)
-      .enter()
+    // ger_svg
+    //   .selectAll("myLabels")
+    //   .data(dataReady)
+    //   .enter()
+    //     .append('g')
+    //     .append("text")
+    //       .attr("class", function(d){ return d.name })
+    //       .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time series
+    //       .attr("transform", function(d) { return "translate(" + x(d.value.Row) + "," + y(d.value.Mean) + ")"; }) // Put the text at the position of the last point
+    //       .attr("x", 12) // shift the text a bit more right
+    //       .text(function(d) { return d.name; })
+    //       .style("fill", function(d){ return myColor(d.name) })
+    //       .style("font-size", 15)
+    
+    var colors = ["#5A39AC", "#BF9C00", "#279DFF", "#FF5733", "#f2bd0c", "#67D500"]
+    var legendRectSize = 20;
+    var legendSpacing = 55;
+    var size = 5
+    var legend = ger_svg.selectAll('.legend')
+        .data(colors)
+        .enter()
         .append('g')
-        .append("text")
-          .attr("class", function(d){ return d.name })
-          .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time series
-          .attr("transform", function(d) { return "translate(" + x(d.value.Row) + "," + y(d.value.Mean) + ")"; }) // Put the text at the position of the last point
-          .attr("x", 12) // shift the text a bit more right
-          .text(function(d) { return d.name; })
-          .style("fill", function(d){ return myColor(d.name) })
-          .style("font-size", 15)
+        .attr('class', 'rect-legend')
+        .attr('transform', function (d, i) {
+            var d_height = legendRectSize;
+            var offset = d_height * color.domain().length / 2;
+            var horz = -2* legendRectSize ;
+            var vert = i * d_height - offset;
+                return 'translate(' + horz + ',' + vert + ')';
+        });
+
+    legend.append('rect')
+        .style('fill', myColor)
+        .style('stroke', myColor)
+        .style("opacity", 1)
+        .attr("x", age_width - legendSpacing)
+        .attr("y", function(d,i){ return 140 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr('width', '20px')
+        .attr('height', '20px');
+
+
+    legend.append('text')
+        .attr('class', 'rect-legend')
+        .style("fill","#66605c")
+        .attr("x", age_width - legendSpacing + size*5)
+        .attr("y", function(d,i){ return 140 + i*(size+5)+ (size*2.8)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .style("text-anchor", "left")
+        .text(function (d, i) {
+            // var subgroupName = d3.select(this.parentNode).datum().key; // This was the tricky part
+            // return subgroupName;
+            switch (i) {
+                case 0: return "Fats & oils";
+                case 1: return "Carbohydrates";
+                case 2: return "Fruit";
+                case 3: return "Meats";
+                case 4: return "Milk and dairy";
+                case 5: return "Vegetables";
+
+            }
+          });
 
     // // Add a legend (interactive)
-    // bel_svg
+    // ger_svg
     //   .selectAll("myLegend")
     //   .data(dataReady)
     //   .enter()
@@ -169,6 +218,7 @@ d3.csv("data/belgium3.csv", function(data) {
       // })
        
     }
+
     
     d3.select(".checkbox#fat3")
     .on("change", function () {

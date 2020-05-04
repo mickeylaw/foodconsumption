@@ -1,16 +1,16 @@
-// set the dimensions and margins of the graph
-var den_margin = {top: 10, right: 10, bottom: 30, left: 50},
-    den_width = 650 - den_margin.left - den_margin.right,
-    den_height = 400 - den_margin.top - den_margin.bottom;
+// // set the dimensions and margins of the graph
+// var ageo_margin = {top: 10, right: 15, bottom: 30, left: 40},
+//     ageo_width = 650 - ageo_margin.left - ageo_margin.right,
+//     ageo_height = 650 - ageo_margin.top - ageo_margin.bottom;
 
 // append the svg object to the body of the page
 var den_svg = d3.select("#denmark_ageplot")
   .append("svg")
-    .attr("width", den_width + den_margin.left + den_margin.right)
-    .attr("height", den_height + den_margin.top + den_margin.bottom)
+    .attr("width", ageo_width + ageo_margin.left + ageo_margin.right)
+    .attr("height", ageo_height + ageo_margin.top + ageo_margin.bottom)
   .append("g")
     .attr("transform",
-          "translate(" + den_margin.left + "," + den_margin.top + ")");
+          "translate(" + ageo_margin.left + "," + ageo_margin.top + ")");
 
 //Read the data
 d3.csv("data/denmark3.csv", function(data) {
@@ -42,10 +42,10 @@ d3.csv("data/denmark3.csv", function(data) {
     // Add X axis --> it is a date format
     var x = d3.scaleLinear()
       .domain([0,6])
-      .range([ 0, den_width ])
+      .range([ 0, ageo_width ])
 
     den_svg.append("g")
-      .attr("transform", "translate(0," + den_height + ")")
+      .attr("transform", "translate(0," + ageo_height + ")")
       .call(d3.axisBottom(x).ticks(5).tickFormat(function(d,i) { 
           return ageGroup[i-1]}));
       
@@ -53,7 +53,7 @@ d3.csv("data/denmark3.csv", function(data) {
     // Add Y axis
     var y = d3.scaleLinear()
       .domain( [0,520])
-      .range([ den_height, 0]);
+      .range([ ageo_height, 0]);
     den_svg.append("g")
       .call(d3.axisLeft(y));
 

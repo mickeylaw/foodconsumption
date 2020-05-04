@@ -27,7 +27,7 @@ var fruit_svg = d3.select("#fruit_chart")
 // X axis
 var fruit_x = d3.scaleBand()
 .range([ 0, f_width ])
-.domain(starchyData.map(function(d) { return d.Country; }))
+.domain(fruitData.map(function(d) { return d.Country; }))
 .padding(0.2);
 fruit_svg.append("g")
 .attr("transform", "translate(0," + f_height + ")")
@@ -145,7 +145,7 @@ function update_fruit(data, carbName, evt) {
     }
 
 // Initialize the plot with the first dataset
-//update_fruit(starchyData, "starchy", event)
+//update_fruit(fruitData, "starchy", event)
 
 d3.select("button#fruit")
 .on("click", function () {

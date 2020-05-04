@@ -1,16 +1,16 @@
 // set the dimensions and margins of the graph
-var net_margin = {top: 10, right: 10, bottom: 30, left: 50},
-    net_width = 650 - net_margin.left - net_margin.right,
-    net_height = 400 - net_margin.top - net_margin.bottom;
+// var ageo_margin = {top: 10, right: 15, bottom: 30, left: 40},
+//     ageo_width = 650 - ageo_margin.left - ageo_margin.right,
+//     ageo_height = 650 - ageo_margin.top - ageo_margin.bottom;
 
 // append the svg object to the body of the page
 var net_svg = d3.select("#netherlands_ageplot")
   .append("svg")
-    .attr("width", net_width + net_margin.left + net_margin.right)
-    .attr("height", net_height + net_margin.top + net_margin.bottom)
+    .attr("width", ageo_width + ageo_margin.left + ageo_margin.right)
+    .attr("height", ageo_height + ageo_margin.top + ageo_margin.bottom)
   .append("g")
     .attr("transform",
-          "translate(" + net_margin.left + "," + net_margin.top + ")");
+          "translate(" + ageo_margin.left + "," + ageo_margin.top + ")");
 
 //Read the data
 d3.csv("data/netherlands3.csv", function(data) {
@@ -42,18 +42,18 @@ d3.csv("data/netherlands3.csv", function(data) {
     // Add X axis --> it is a date format
     var x = d3.scaleLinear()
       .domain([0,6])
-      .range([ 0, net_width ])
+      .range([ 0, ageo_width ])
 
     net_svg.append("g")
-      .attr("transform", "translate(0," + net_height + ")")
+      .attr("transform", "translate(0," + ageo_height + ")")
       .call(d3.axisBottom(x).ticks(5).tickFormat(function(d,i) { 
           return ageGroup[i-1]}));
       
 
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain( [0,400])
-      .range([ net_height, 0]);
+      .domain( [0,520])
+      .range([ ageo_height, 0]);
     net_svg.append("g")
       .call(d3.axisLeft(y));
 

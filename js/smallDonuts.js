@@ -1,12 +1,12 @@
-var sD_radius = 60,
-    sD_padding = 10;
+var sD_radius = 45,
+    sD_padding = 5;
 
 var color = d3.scaleOrdinal()
-    .range(["#5A39AC", "#B0A05D", "#279DFF", "#FF5733", "#f2bd0c", "#67D500"]);
+    .range(["#5A39AC", "#AF996A", "#279DFF", "#FF5733", "#f2bd0c", "#67D500"]);
 
 var sD_arc = d3.arc()
     .outerRadius(sD_radius)
-    .innerRadius(sD_radius - 30);
+    .innerRadius(sD_radius - 25);
 
 var sD_pie = d3.pie()
     .sort(null)
@@ -53,16 +53,16 @@ d3.csv("data/smallDonut.csv", function(error, data) {
         .attr("width", sD_radius * 2)
         .attr("height", sD_radius * 2)
         .append("g")
-        .attr("transform", "translate(" + (sD_radius+10) + "," + (sD_radius+10) + ")");
+        .attr("transform", "translate(" + (sD_radius+10) + "," + (sD_radius*1.5) + ")");
         svg.append("rect")
         .attr("class", "sD_box")
         .attr("id", function(d, i){ var result = 'country' + i ; return result; })
         .attr("dx", "-60px")
         .attr("dy", "-60px")
         .attr("width",sD_radius * 2+10)
-        .attr("height",sD_radius * 2+10)
+        .attr("height",sD_radius * 2+28)
         .attr("fill", "#fff")
-        .attr("transform", "translate(" + (-sD_radius-5) + "," + (-sD_radius-5) + ")")
+        .attr("transform", "translate(" + (-sD_radius-5) + "," + (-sD_radius-6) + ")")
         // .style("opacity",0);
 
 
@@ -74,8 +74,10 @@ d3.csv("data/smallDonut.csv", function(error, data) {
         .style("fill", function(d) { return color(d.data.name); });
 
     svg.append("text")
-        .attr("dy", ".35em")
+        .attr("class", "sD_text")
+        .attr("dy", "5em")
         .style("text-anchor", "middle")
+        .style("fill","#53575f")
         .text(function(d) { return d.Country; });
 
     svg.append("rect")
@@ -84,10 +86,10 @@ d3.csv("data/smallDonut.csv", function(error, data) {
         .attr("dx", "-60px")
         .attr("dy", "-60px")
         .attr("width",sD_radius * 2+10)
-        .attr("height",sD_radius * 2+10)
+        .attr("height",sD_radius * 2+28)
         .attr("fill", "#fff")
         .style("stroke", "#CACACA")
-        .attr("transform", "translate(" + (-sD_radius-5) + "," + (-sD_radius-5) + ")")
+        .attr("transform", "translate(" + (-sD_radius-5) + "," + (-sD_radius-6) + ")")
         .attr("opacity",0)
         .on("mouseover",function(d) {
             d3.select(this).transition()
