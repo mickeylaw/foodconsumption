@@ -1,0 +1,20 @@
+,Country,FoodexL1,Mean,STD,P5,q1,q2,q3,P99
+1,Austria,Grains and grain-based products,248.26,120.64,75,166.828,241,329.692,578.25
+2,Austria,Starchy roots and tubers,88.38,53.14,32.5,52.5105,70.5,,250
+,,,336.64,173.78,,219.3385,,,
+3,Belgium,Grains and grain-based products,235.68,124.58,75,151.5885,213,,615.9
+4,Belgium,Starchy roots and tubers,118.84,77.94,31,66.2305,106.25,,345.5
+5,Germany,Grains and grain-based products,230.27,118.04,76,150.593,211,,614.25
+6,Germany,Starchy roots and tubers,94.04,59.39,24,53.95175,70.5,,293.5
+7,Denmark,Grains and grain-based products,208.9,81.38,92.19,153.9685,198.66,,435.04
+8,Denmark,Starchy roots and tubers,94.36,73.47,5.36,44.76775,79,,347.99
+9,France,Grains and grain-based products,225.62,106.04,82.43,154.043,212.7,,531.86
+10,France,Starchy roots and tubers,69.91,48.3,14.29,37.3075,61,,234.22
+11,United Kingdom,Grains and grain-based products,192.82,94.69,65.25,128.90425,180.99,,477
+12,United Kingdom,Starchy roots and tubers,99.06,60.1,22.5,58.4925,91.03,,277.5
+13,Italy,Grains and grain-based products,251.43,101.51,105.5,182.91075,240.7,,556.45
+14,Italy,Starchy roots and tubers,74.07,52.23,7,38.81475,65.36,,230.32
+15,Netherlands,Grains and grain-based products,224.31,94.39,94.9,160.59675,215,,494.5
+16,Netherlands,Starchy roots and tubers,145.74,96.73,31.05,80.44725,123.28,,484.7
+17,Sweden,Grains and grain-based products,182.18,87,60.33,123.455,171.03,,430.5
+18,Sweden,Starchy roots and tubers,129.45,110.88,22.75,54.606,101.25,,560.63

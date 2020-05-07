@@ -30,7 +30,7 @@ d3.csv("data/italy3.csv", function(data) {
         })
       };
     });
-    console.log(dataReady);
+
     // I strongly advise to have a look to dataReady with
     // console.log(dataReady)
 

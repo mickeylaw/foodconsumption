@@ -11,7 +11,7 @@ library(tibble)
 SEP <- "\t"
 SEP2 <- ","
 
-R_DATA_GENERAL <<- "/Users/howinglaw/Desktop/Project/data/"
+R_DATA_GENERAL <<- "/Users/howinglaw/Desktop/Project/foodconsumption.github.io/data/"
 
 ##############################################################################################################
 # LOAD DATA
@@ -169,6 +169,9 @@ foodConsume$FoodexL1[foodConsume$FoodexL1 %in% oldVeg] <- "Vegetables"
 head(foodConsume)
 
 foodConsume$Mean <- as.numeric(as.character(foodConsume$Mean))
+foodConsume$Median <- as.numeric(as.character(foodConsume$Median))
+
+
 
 message("1")
 
@@ -527,6 +530,99 @@ write.csv(uk_data, 'uk.csv')
 
 
 
+foodConsume$Mean <- as.numeric(as.character(foodConsume$Mean))
+foodConsume$Median <- as.numeric(as.character(foodConsume$Median))
+foodConsume$P5 <- as.numeric(as.character(foodConsume$P5))
+foodConsume$P99 <- as.numeric(as.character(foodConsume$P99))
+
+carb_full_data <- foodConsume %>%
+  dplyr::filter(FoodexL1 == "Carbohydrates",  
+         PopClass == "Adults",
+         Country %in% c("Austria", "Belgium", "Denmark", "France", "Germany", "Italy", "Netherlands", "Sweden", "United Kingdom")) %>%
+  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::group_by(Country) %>%
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+
+%>%
+  dplyr::mutate(Mean = round(Mean, 0))
+
+
+carb_full_data
+
+write.csv(carb_full_data, "carb_full_data.csv")
+
+
+meat_full_data <- foodConsume %>%
+  dplyr::filter(FoodexL1 == "Meats",  
+                PopClass == "Adults",
+                Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
+  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::group_by(Country) %>%
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+meat_full_data
+
+write.csv(meat_full_data, "meat_full_data.csv")
+
+
+
+fruit_full_data <- foodConsume %>%
+  dplyr::filter(FoodexL1 == "Fruit and fruit products",  
+                PopClass == "Adults",
+                Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
+  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::group_by(Country) %>%
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+fruit_full_data
+
+write.csv(fruit_full_data, "fruit_full_data.csv")
+
+
+
+
+veg_full_data <- foodConsume %>%
+  dplyr::filter(FoodexL1 == "Vegetables",  
+                PopClass == "Adults",
+                Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
+  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::group_by(Country) %>%
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+veg_full_data
+
+write.csv(veg_full_data, "veg_full_data.csv")
+
+
+
+fat_full_data <- foodConsume %>%
+  dplyr::filter(FoodexL1 == "Animal and vegetable fats and oils",  
+                PopClass == "Adults",
+                Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
+  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::group_by(Country) %>%
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+fat_full_data
+
+write.csv(fat_full_data, "fat_full_data.csv")
+
+
+
+
+
+
+milk_full_data <- foodConsume %>%
+  dplyr::filter(FoodexL1 == "Milk and dairy products",  
+                PopClass == "Adults",
+                Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
+  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::group_by(Country) %>%
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+milk_full_data
+
+write.csv(milk_full_data, "milk_full_data.csv")
+
+
+
+
+
 
 starchall_data <- foodConsume %>%
   filter(FoodexL1 %in% c("Starchy roots and tubers","Grains and grain-based products"), 
@@ -718,236 +814,6 @@ starchall +
   theme(legend.position = "none",
         plot.title = element_text(size=14, face="bold", hjust = 0.5), 
         axis.text.x = element_text(size = 9, angle = 45, hjust = 1))
-
-message("RQ2: How the suicide rate change according to education level and age?")
-
-plot_data2 <- suicideCase %>%
-  dplyr::filter(Education!="unknown")%>%
-  dplyr::count(Education, Age) 
-head(plot_data2)
-
-eduAge <- ggplot(data = plot_data2, aes(x=Education, y=Age)) + 
-  geom_point(aes(size=n)) +
-  ggtitle("Suicide Cases by Age and Education Level")+
-  xlab("Education Level") + ylab("Age") +
-  labs(size = "Number of cases")
-
-"eduage <- eduage + theme(legend.title = element_blank())"
-
-eduAge + 
-  theme_minimal()+
-  theme(legend.position = "right",
-        legend.text = element_text(size = 10),
-        plot.title = element_text(size=14, face="bold", hjust = 0.5), 
-        axis.text.x = element_text(angle = 45, hjust = 1))
-
-violin <- ggplot(data = plot_data2, aes(x=Education, y=Age)) + 
-  geom_violin(scale = "count", adjust = .5) + 
-  ggtitle("Suicide Cases by Age and Education Level")+
-  labs(x="Education level",
-       y="Age") +
-  geom_boxplot(width=0.05)
-
-violin + 
-  theme_minimal()+
-  theme(plot.title = element_text(size=14, face="bold", hjust = 0.5), 
-        axis.text.x = element_text(angle = 45, hjust = 1))
-
-g <- ggplot(data = plot_data2, aes(x=Education, y=Age)) +
-  geom_dotplot(binaxis='y', stackdir='center', dotsize=0.2)
-g
-
-message("RQ3: How does the number of suicide of male and female change in time?")
-
-plot_data3 <- suicideCase %>%
-  dplyr::count(Sex, Year)
-head(plot_data3)
-
-sexyear <- ggplot() + 
-  geom_line(aes(y = n, x = Year, color = Sex),
-  size = 1.1, data = plot_data3, stat="identity")+
-  ggtitle("Suicide Cases by Year and Sex")+
-  xlab("Year") + ylab("Number of cases")+
-  scale_x_continuous(breaks = scales::pretty_breaks(n = 3))
-
-sexyear + 
-  theme_minimal()+
-  theme(legend.title = element_blank(),
-        legend.text = element_text(size = 10),
-        legend.position = "right",
-        plot.title = element_text(size=14, face="bold", hjust = 0.5))
-
-message("RQ4: Was there a particular month(or season) that suicide most likely happened?")
-
-plot_data4 <- suicideCase %>%
-  dplyr::count(Year, Month)
-head(plot_data4)
-
-
-'mon <- ggplot(data = plot_data4, aes(x=Month, y=n, fill=factor(Year))) + 
-  geom_bar(stat = "identity", position="dodge2") +
-  scale_x_continuous(breaks = scales::pretty_breaks(n = 12))+
-  theme_minimal()+
-  ggtitle("Suicide Cases by Month and Year")+
-  xlab("Month") + ylab("Number of cases") 
-
-
-mon + theme(
-  plot.title = element_text(size=14, face="bold", hjust = 0.5)) '
-
-mon2 <- ggplot() + 
-  geom_line(aes(y = n, x = Month, color = factor(Year)),
-            data = plot_data4, stat="identity", size = 1.1)+
-  ggtitle("Suicide Cases by Month and Year")+
-  xlab("Month") + ylab("Number of cases")+
-  scale_x_continuous(breaks = scales::pretty_breaks(n = 12))+
-  labs(colour = "Year")
-
-mon2 +
-  theme_minimal() +
-  theme(legend.text = element_text(size = 10),
-        legend.position = "right",
-        plot.title = element_text(size=14, face="bold", hjust = 0.5))
-
-message("RQ5: Which method most likely to survive and which most likely to die? ")
-
-plot_data5 <- suicideCase %>%
-  dplyr::filter(method!="Others" & method!="unspecified")%>%
-  dplyr::group_by(method, Died) %>%
-  dplyr::summarise(n=n()) %>%
-  dplyr::mutate(perc = n / sum(n)) %>%
-  dplyr::mutate(rounded = round(perc, 2))
-
-'new.plot_data5 <- with(plot_data5, ifelse(Died == "yes", -perc, perc))
-new.plot_data5'
-
-neg <- plot_data5$Died == "yes"
-plot_data5$n[neg] = -abs(plot_data5$n[neg])
-
-perc2 <- plot_data5$perc
-plot_data5$rounded = percent(plot_data5$rounded, d = 0)
-head(plot_data5)
-
-  
-"treeMapPlot <- ggplot(plot_data5, aes(area = n, fill = Died, label = perc, subgroup = method)) + 
-  geom_treemap() +
-  geom_treemap_text(place = 'centre', colour = 'white', size = '8') +
-  geom_treemap_subgroup_border(colour = 'black') +
-  geom_treemap_subgroup_text(place = 'centre', colour = 'black')
-
-treeMapPlot"
-
-brks <- seq(-1000, 1000, 200)
-lbls = paste0(as.character(c(seq(1000, 0, -200), seq(200, 1000, 200))))
-
-deathrate <- ggplot(plot_data5, aes(x = method, y = n , fill = Died)) +   # Fill column
-  geom_bar(stat = "identity", width = .6) +   # draw the bars
-  scale_y_continuous(breaks = brks,   # Breaks
-                     labels = lbls) +
-  coord_flip() +  # Flip axes
-  labs(title="Death rate on suicide methods") +
-  xlab("Method") + ylab("Number of cases") 
-
-deathrate + 
-  theme(plot.title = element_text(size=14, face = "bold", hjust = 0.5)) +  # Centre plot title
-  geom_text(check_overlap = TRUE, aes(label = rounded, x = method, y = n), size = 2.4, vjust = -2.8) +
-  scale_fill_manual(values = c("#619CFF", "#F8766D"))
-
-deathrate2 <- ggplot(data = plot_data5, aes(x = "", y = rounded, fill = Died)) + 
-  geom_bar(stat = "identity") +
-  geom_text(aes(label = rounded), position = position_stack(vjust = 0.5), size = 3) +
-  coord_polar(theta = "y") +
-  ggtitle("Death rate on suicide methods") +
-  facet_grid(facets=. ~ method) +
-  scale_fill_manual(values = c("#808080", "#F8766D"))
-
-deathrate2 +
-  theme(legend.position = "bottom",
-        plot.title = element_text(size=14, face = "bold", hjust = 0.5),
-        axis.title.x = element_blank(),
-        axis.title.y = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank(),
-        panel.grid  = element_blank()) 
-
-message("RQ6: What occupation is the most common in commiting suicide? Is it in urban area?")
-
-plot_data6 <- suicideCase %>%
-  dplyr::filter(Urban != "unknown") %>%
-  dplyr::count(Occupation, Urban)
-head(plot_data6)
-
-treeMapPlot2 <- ggplot(plot_data6, aes(area = n, fill = Urban, subgroup = Occupation)) + 
-  geom_treemap() +
-  geom_treemap_subgroup_border(colour = 'black') +
-  geom_treemap_subgroup_text(place = 'centre', colour = 'black') +
-  theme(
-    plot.title = element_text(size=14, face = "bold", hjust = 0.5))+
-  labs(title="")
-
-treeMapPlot2
-
-treeMapPlot3 <- ggplot(plot_data6, aes(area = n, label = Occupation, fill = Urban, subgroup = Urban)) + 
-  geom_treemap() +
-  geom_treemap_subgroup_border(colour = 'black') +
-  geom_treemap_text(place = 'centre', colour = 'black') +
-  ggtitle("Occupation and Area of People Attempting Suicide")
-
-treeMapPlot3 +
-  theme_minimal() +
-  theme(plot.title = element_text(size=14, face = "bold", hjust = 0.5))
-
-message("RQ7: How the suicide attempt number and suicide death number changed between 2009 and 2011?")
-
-plot_data7 <- suicideCase %>%
-  dplyr::count(Year, Month) %>% 
-  unite("Year_Month", Year, Month, sep = "/")
-head(plot_data7)
-plot_data8 <- suicideCase %>%
-  dplyr::filter(Died!="no") %>%
-  unite("Year_Month", Year, Month, sep = "/") %>%
-  dplyr::count(Year_Month, Died)
-head(plot_data8)
-
-plot_data7$Year_Month <- factor(plot_data7$Year_Month, levels = plot_data7$Year_Month)
-plot_data8$Year_Month <- factor(plot_data8$Year_Month, levels = plot_data8$Year_Month)
-
-casedeath <- ggplot() + 
-  geom_line(aes(y = n, x = Year_Month, group=1, colour = "Suicide attempts"),
-            data = plot_data7, stat="identity")+
-  geom_line(aes(y = n, x = Year_Month, group=1, colour = "Suicide death"),
-            data = plot_data8, stat="identity")+
-  ggtitle("Suicide Attempts and Suicide Death Number between 2009 and 2011")+
-  xlab("Year/Month") + ylab("Number of cases")+
-  scale_colour_manual("", values = c("Suicide attempts" = "black", "Suicide death" = "red"))
-
-casedeath + 
-  theme_minimal() + 
-  theme(plot.title = element_text(size=14, face="bold", hjust = 0.5), axis.text.x = element_text(angle = 65, hjust = 1))
-
-message("RQ8: ?")
-
-plot_data9 <- suicideCase %>%
-  dplyr::filter(Occupation != "others/unknown", Education != "unknown")
-  dplyr::select(Education, Occupation, Sex)
-head(plot_data9)
-
-ggplot(data = plot_data9) +
-  geom_mosaic(aes(x = product(Education, Occupation), fill=Occupation), na.rm=TRUE) +  
-  labs(x = "Occupation", y = "", title='Suicide attempters by occupation, education and sex') +
-  facet_grid(Sex~.) +
-  theme(
-    plot.title = element_text(size=14, face="bold", hjust = 0.5), axis.text.x = element_text(size = 8, angle = 90, hjust = 1))
-
-
-ggplot(data = plot_data9) +
-  geom_mosaic(aes(x = product(Education, Occupation), fill=Education), na.rm=TRUE) +  
-  labs(x = "Occupation", y = "", title='f(Occupation, Education| Sex)') +
-  facet_grid(Sex~.) +
-  theme(
-    plot.title = element_text(size=14, face="bold", hjust = 0.5), 
-    axis.text.x = element_text(size = 8, angle = 90, hjust = 1),
-    legend.key = element_rect(color="white", size = 2))
 
 
 
