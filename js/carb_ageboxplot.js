@@ -62,7 +62,7 @@ d3.csv("data/carb_full_data.csv", rowConverter, function(data) {
 
   // Show the Y scale
   var y = d3.scaleLinear()
-    .domain([0,1000])
+    .domain([0,800])
     .range([bp_height, 30])
   carb_bp_svg.append("g").call(d3.axisLeft(y))
 
@@ -106,7 +106,7 @@ d3.csv("data/carb_full_data.csv", rowConverter, function(data) {
           var q3 = d.value.q3;
           var min = d.value.min;
           var max = d.value.max;
-          donutTip.html("max: " + max+ "<br>" + "q3: " + q3 + "<br>" + "q2: " + q2 + "<br>" + "q1: " + q1 + "<br>" + "min: " + min )
+          donutTip.html("P95: " + max+ "<br>" + "P75: " + q3 + "<br>" + "Median: " + q2 + "<br>" + "P25: " + q1 + "<br>" + "P5: " + min )
               .style("left",(d3.event.pageX+ 20) + "px")
               .style("top", (d3.event.pageY - 60) + "px");
       })

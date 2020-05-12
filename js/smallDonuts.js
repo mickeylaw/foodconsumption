@@ -62,6 +62,8 @@ d3.csv("data/smallDonut.csv", function(error, data) {
         .attr("width",sD_radius * 2+10)
         .attr("height",sD_radius * 2+28)
         .attr("fill", "#fff")
+        .attr("rx", "2px")
+        .attr("ry", "2px")
         .attr("transform", "translate(" + (-sD_radius-5) + "," + (-sD_radius-6) + ")")
         // .style("opacity",0);
 
@@ -88,6 +90,8 @@ d3.csv("data/smallDonut.csv", function(error, data) {
         .attr("width",sD_radius * 2+10)
         .attr("height",sD_radius * 2+28)
         .attr("fill", "#fff")
+        .attr("rx", "2px")
+        .attr("ry", "2px")
         .style("stroke", "#CACACA")
         .attr("transform", "translate(" + (-sD_radius-5) + "," + (-sD_radius-6) + ")")
         .attr("opacity",0)

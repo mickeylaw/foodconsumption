@@ -1,10 +1,10 @@
 Country,min,q1,q2,q3,max
-Austria,25,91,153,292,809
-Belgium,15,77,132,236,503
-Denmark,13,94,168,305,741
-France,5,58,119,236,587
-Germany,15,85,162,325,800
-Italy,21,108,183,299,667
-Netherlands,8,60,109,209,513
-Sweden,15,65,115,212,460
-United Kingdom,8,43,87,184,469
+Austria,25,91,153,292,447
+Belgium,15,77,132,236,378
+Germany,15,85,162,325,540
+Denmark,13,94,168,305,486
+France,5,58,119,236,403
+United Kingdom,8,43,87,184,309
+Italy,21,108,183,299,463
+Netherlands,8,60,109,209,343
+Sweden,15,65,115,212,340

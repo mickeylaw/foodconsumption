@@ -533,15 +533,15 @@ write.csv(uk_data, 'uk.csv')
 foodConsume$Mean <- as.numeric(as.character(foodConsume$Mean))
 foodConsume$Median <- as.numeric(as.character(foodConsume$Median))
 foodConsume$P5 <- as.numeric(as.character(foodConsume$P5))
-foodConsume$P99 <- as.numeric(as.character(foodConsume$P99))
+foodConsume$P95 <- as.numeric(as.character(foodConsume$P95))
 
 carb_full_data <- foodConsume %>%
   dplyr::filter(FoodexL1 == "Carbohydrates",  
          PopClass == "Adults",
-         Country %in% c("Austria", "Belgium", "Denmark", "France", "Germany", "Italy", "Netherlands", "Sweden", "United Kingdom")) %>%
-  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+         Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
+  dplyr::select(Country, Mean, STD, P5, Median, P95)%>%
   dplyr::group_by(Country) %>%
-  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P95 = sum(P95))
 
 %>%
   dplyr::mutate(Mean = round(Mean, 0))
@@ -549,19 +549,19 @@ carb_full_data <- foodConsume %>%
 
 carb_full_data
 
-write.csv(carb_full_data, "carb_full_data.csv")
+write.csv(carb_full_data, "carb_full_data2.csv")
 
 
 meat_full_data <- foodConsume %>%
   dplyr::filter(FoodexL1 == "Meats",  
                 PopClass == "Adults",
                 Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
-  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::select(Country, Mean, STD, P5, Median, P95)%>%
   dplyr::group_by(Country) %>%
-  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P95 = sum(P95))
 meat_full_data
 
-write.csv(meat_full_data, "meat_full_data.csv")
+write.csv(meat_full_data, "meat_full_data2.csv")
 
 
 
@@ -569,12 +569,12 @@ fruit_full_data <- foodConsume %>%
   dplyr::filter(FoodexL1 == "Fruit and fruit products",  
                 PopClass == "Adults",
                 Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
-  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::select(Country, Mean, STD, P5, Median, P95)%>%
   dplyr::group_by(Country) %>%
-  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P95 = sum(P95))
 fruit_full_data
 
-write.csv(fruit_full_data, "fruit_full_data.csv")
+write.csv(fruit_full_data, "fruit_full_data2.csv")
 
 
 
@@ -583,12 +583,12 @@ veg_full_data <- foodConsume %>%
   dplyr::filter(FoodexL1 == "Vegetables",  
                 PopClass == "Adults",
                 Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
-  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::select(Country, Mean, STD, P5, Median, P95)%>%
   dplyr::group_by(Country) %>%
-  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P95 = sum(P95))
 veg_full_data
 
-write.csv(veg_full_data, "veg_full_data.csv")
+write.csv(veg_full_data, "veg_full_data2.csv")
 
 
 
@@ -596,12 +596,12 @@ fat_full_data <- foodConsume %>%
   dplyr::filter(FoodexL1 == "Animal and vegetable fats and oils",  
                 PopClass == "Adults",
                 Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
-  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::select(Country, Mean, STD, P5, Median, P95)%>%
   dplyr::group_by(Country) %>%
-  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P95 = sum(P95))
 fat_full_data
 
-write.csv(fat_full_data, "fat_full_data.csv")
+write.csv(fat_full_data, "fat_full_data2.csv")
 
 
 
@@ -612,12 +612,12 @@ milk_full_data <- foodConsume %>%
   dplyr::filter(FoodexL1 == "Milk and dairy products",  
                 PopClass == "Adults",
                 Country %in% c("Austria", "Belgium",  "Germany", "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden")) %>%
-  dplyr::select(Country, Mean, STD, P5, Median, P99)%>%
+  dplyr::select(Country, Mean, STD, P5, Median, P95)%>%
   dplyr::group_by(Country) %>%
-  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P99 = sum(P99))
+  dplyr::summarise(Mean = sum(Mean), STD = sum(STD), P5 = sum(P5), Median = sum(Median), P95 = sum(P95))
 milk_full_data
 
-write.csv(milk_full_data, "milk_full_data.csv")
+write.csv(milk_full_data, "milk_full_data2.csv")
 
 
 
