@@ -7,7 +7,6 @@ function update_box(foodSeg, countryName, evt) {
         tablinks[i].style.display = "none";
     }
     document.getElementById(foodSeg).style.display = "block";
-    // evt.currentTarget.className += " active";
 
     var j, y, tablinks2;
     y = document.getElementsByClassName("foodgp");
@@ -18,8 +17,6 @@ function update_box(foodSeg, countryName, evt) {
     }
     document.getElementById(countryName).style.display = "block";
     evt.currentTarget.className += " active";
-
-
     }
     
 

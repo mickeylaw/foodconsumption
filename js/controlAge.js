@@ -1,3 +1,4 @@
+// Function controlling buttons
 function update_age(foodSeg, countryName, evt) {
     var i, x, tablinks;
     x = document.getElementsByClassName("ageplot");
@@ -7,7 +8,6 @@ function update_age(foodSeg, countryName, evt) {
         tablinks[i].style.display = "none";
     }
     document.getElementById(foodSeg).style.display = "block";
-    // evt.currentTarget.className += " active";
 
     var j, y, tablinks2;
     y = document.getElementsByClassName("country2");
@@ -18,11 +18,8 @@ function update_age(foodSeg, countryName, evt) {
     }
     document.getElementById(countryName).style.display = "block";
     evt.currentTarget.className += " active";
-
-
     }
     
-
 
 d3.select("button#Austria2")
     .on("click", function () {
@@ -71,4 +68,46 @@ d3.select("button#Sweden2")
     update_age("sweden_ageplot", "Sweden2", event);      
     })
 
-    
+// Function controlling visibility of lines    
+function updatePlot(dataName) {
+    currentOpacity = d3.selectAll("." + dataName).style("opacity")
+    // Change the opacity: from 0 to 1 or from 1 to 0
+    d3.selectAll("." + dataName).transition().style("opacity", currentOpacity == 1 ? 0:1);
+}
+
+d3.select(".checkbox#fat3")
+    .on("change", function () {
+    updatePlot("Fats");      
+    })
+
+d3.select(".checkbox#carb3")
+    .on("change", function () {
+    updatePlot("Carbohydrates");      
+    })
+
+d3.select(".checkbox#fruit3")
+    .on("change", function () {
+    updatePlot("Fruit");      
+    })
+
+d3.select(".checkbox#milk3")
+    .on("change", function () {
+    updatePlot("Milk");      
+    })
+
+d3.select(".checkbox#meat3")
+    .on("change", function () {
+    updatePlot("Meats");      
+    })
+
+d3.select(".checkbox#veg3")
+    .on("change", function () {
+    updatePlot("Vegetables");      
+    })
+
+d3.select("button#fat2")
+    .on("click", function () {
+    updatePlot("Fats");      
+    })
+
+

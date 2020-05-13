@@ -3,7 +3,7 @@ var bp_margin = {top: 30, right: 25, bottom: 30, left: 40},
     bp_width = 700 - bp_margin.left - bp_margin.right,
     bp_height = 400 - bp_margin.top - bp_margin.bottom;
 
-// append the carb_bp_svg object to the body of the page
+// append the svg object to the body of the page
 var carb_bp_svg = d3.select("#carb_boxplot")
   .append("svg")
     .attr("width", bp_width + bp_margin.left + bp_margin.right)
@@ -22,19 +22,10 @@ var rowConverter = function(d) { return {
     };
 }
 
-// Read the data and compute summary statistics for each specie
+// Read the data and compute summary statistics for each country
 d3.csv("data/carb_full_data.csv", rowConverter, function(data) {
 
-    // var q1 = d.q1
-    // var q2 = d.q2
-    // var q3 = d.q3
-    // // var interQuantileRange = q3 - q1
-    // var min = d.min
-    // var max = d.max
-    // console.log(data)
-    // var allCountry = ["Austria", "Belgium", "Germany",  "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden" ]
-
-//   // Compute quartiles, median, inter quantile range min and max --> these info are then used to draw the box.
+  // Compute quartiles, median, min and max --> these info are then used to draw the box.
   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
     .key(function(d) { return d.Country;})
     .rollup(function(d) {
@@ -47,8 +38,6 @@ d3.csv("data/carb_full_data.csv", rowConverter, function(data) {
       return({q1: q1, median: median, q3: q3, min: min,max: max})
     })
     .entries(data);
-
-    // console.log(sumstat)
 
   // Show the X scale
   var x = d3.scaleBand()
@@ -92,8 +81,6 @@ d3.csv("data/carb_full_data.csv", rowConverter, function(data) {
         .attr("width", boxWidth )
         .attr("stroke", "black")
         .style("fill", "#AF996A")
-
-
         .on('mouseover', function (d, i) {
           d3.select(this).transition()
               .duration('50')
@@ -117,7 +104,6 @@ d3.csv("data/carb_full_data.csv", rowConverter, function(data) {
             .style("left",(d3.event.pageX+ 20) + "px")
             .style("top", (d3.event.pageY - 60) + "px");
       })
-
       .on('mouseout', function (d, i) {
           d3.select(this).transition()
               .duration('50')
@@ -126,7 +112,6 @@ d3.csv("data/carb_full_data.csv", rowConverter, function(data) {
               .duration('50')
               .style("opacity", 0);
       });
-
 
   // Show the median
   carb_bp_svg
@@ -154,6 +139,4 @@ d3.csv("data/carb_full_data.csv", rowConverter, function(data) {
     .attr('y', bp_margin.top -10)
     .style("text-anchor", "middle")
         .text("Carbohydrates");
-        
-
 })

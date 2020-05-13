@@ -22,19 +22,10 @@ var rowConverter = function(d) { return {
     };
 }
 
-// Read the data and compute summary statistics for each specie
+// Read the data and compute summary statistics for each country
 d3.csv("data/veg_full_data.csv", rowConverter, function(data) {
 
-    // var q1 = d.q1
-    // var q2 = d.q2
-    // var q3 = d.q3
-    // // var interQuantileRange = q3 - q1
-    // var min = d.min
-    // var max = d.max
-    // console.log(data)
-    // var allCountry = ["Austria", "Belgium", "Germany",  "Denmark", "France", "United Kingdom", "Italy", "Netherlands", "Sweden" ]
-
-//   // Compute quartiles, median, inter quantile range min and max --> these info are then used to draw the box.
+  // Compute quartiles, median, min and max --> these info are then used to draw the box.
   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
     .key(function(d) { return d.Country;})
     .rollup(function(d) {
@@ -48,8 +39,6 @@ d3.csv("data/veg_full_data.csv", rowConverter, function(data) {
     })
     .entries(data);
 
-    // console.log(sumstat)
-
   // Show the X scale
   var x = d3.scaleBand()
     .range([ 0, bp_width ])
@@ -62,7 +51,7 @@ d3.csv("data/veg_full_data.csv", rowConverter, function(data) {
 
   // Show the Y scale
   var y = d3.scaleLinear()
-    .domain([0,1000])
+    .domain([0,600])
     .range([bp_height, 30])
   veg_bp_svg.append("g").call(d3.axisLeft(y))
 
@@ -92,8 +81,6 @@ d3.csv("data/veg_full_data.csv", rowConverter, function(data) {
         .attr("width", boxWidth )
         .attr("stroke", "black")
         .style("fill", "#67D500")
-
-
         .on('mouseover', function (d, i) {
           d3.select(this).transition()
               .duration('50')
@@ -106,7 +93,7 @@ d3.csv("data/veg_full_data.csv", rowConverter, function(data) {
           var q3 = d.value.q3;
           var min = d.value.min;
           var max = d.value.max;
-          donutTip.html("max: " + max+ "<br>" + "q3: " + q3 + "<br>" + "q2: " + q2 + "<br>" + "q1: " + q1 + "<br>" + "min: " + min )
+          donutTip.html("P95: " + max+ "<br>" + "P75: " + q3 + "<br>" + "Median: " + q2 + "<br>" + "P25: " + q1 + "<br>" + "P5: " + min )
               .style("left",(d3.event.pageX+ 20) + "px")
               .style("top", (d3.event.pageY - 60) + "px");
       })
@@ -117,7 +104,6 @@ d3.csv("data/veg_full_data.csv", rowConverter, function(data) {
             .style("left",(d3.event.pageX+ 20) + "px")
             .style("top", (d3.event.pageY - 60) + "px");
       })
-
       .on('mouseout', function (d, i) {
           d3.select(this).transition()
               .duration('50')
@@ -126,7 +112,6 @@ d3.csv("data/veg_full_data.csv", rowConverter, function(data) {
               .duration('50')
               .style("opacity", 0);
       });
-
 
   // Show the median
   veg_bp_svg
@@ -154,6 +139,4 @@ d3.csv("data/veg_full_data.csv", rowConverter, function(data) {
     .attr('y', bp_margin.top -10)
     .style("text-anchor", "middle")
         .text("Vegetables");
-        
-
 })

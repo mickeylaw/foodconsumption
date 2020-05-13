@@ -15,31 +15,25 @@ var age_svg = d3.select("#austria_ageplot")
 //Read the data
 d3.csv("data/austria3.csv", function(data) {
 
-    // List of groups (here I have one group per column)
+    // List of groups 
     var allGroup = ["Fats", "Carbohydrates", "Fruit","Meats","Milk","Vegetables"]
     var ageGroup = ["Children", "Adolescents", "Adults", "Elderly", "Very elderly"]
     // Reformat the data: we need an array of arrays of {x, y} tuples
     var dataReady = allGroup.map( function(grpName) { // .map allows to do something for each element of the list
       return {
         name: grpName,
-        // popclass: data.map(function(d) {
-        //   return {PopClass: d.PopClass};
-        // }),
         values: data.map(function(d) {
           return {Row: +d.Row, Mean: +d[grpName]};
         })
       };
     });
 
-    // I strongly advise to have a look to dataReady with
-    // console.log(dataReady)
-
     // A color scale: one color for each group
     var myColor = d3.scaleOrdinal()
       .domain(allGroup)
       .range(["#5A39AC", "#BF9C00", "#279DFF", "#FF5733", "#f2bd0c", "#67D500"]);
 
-    // Add X axis --> it is a date format
+    // Add X axis
     var x = d3.scaleLinear()
       .domain([0,7])
       .range([ 0, age_width ])
@@ -75,14 +69,14 @@ d3.csv("data/austria3.csv", function(data) {
 
     // Add the points
     age_svg
-      // First we need to enter in a group
+      // First enter in a group
       .selectAll("myDots")
       .data(dataReady)
       .enter()
         .append('g')
         .style("fill", function(d){ return myColor(d.name) })
         .attr("class", function(d){ return d.name })
-      // Second we need to enter in the 'values' part of this group
+      // Second enter in the 'values' part of this group
       .selectAll("myPoints")
       .data(function(d){ return d.values })
       .enter()
@@ -91,7 +85,6 @@ d3.csv("data/austria3.csv", function(data) {
         .attr("cy", function(d) { return y(d.Mean) } )
         .attr("r", 5)
         .attr("stroke", "white")
-
         .on('mouseover', function (d, i) {
           d3.select(this).transition()
               .duration('50')
@@ -100,13 +93,10 @@ d3.csv("data/austria3.csv", function(data) {
               .duration(50)
               .style("opacity", 1);
           var subgroupValue = d.Mean;
-          //var subgroupName = d.data.FoodexL1;
           donutTip.html(subgroupValue + " grams")
               .style("left", (d3.event.pageX + 10) + "px")
               .style("top", (d3.event.pageY - 50) + "px");
-  
       })
-
       .on('mouseout', function (d, i) {
           d3.select(this).transition()
               .duration('50')
@@ -116,21 +106,7 @@ d3.csv("data/austria3.csv", function(data) {
               .style("opacity", 0);
       });
   
-
-    // Add a label at the end of each line
-    // age_svg
-    //   .selectAll("myLabels")
-    //   .data(dataReady)
-    //   .enter()
-    //     .append('g')
-    //     .append("text")
-    //       .attr("class", function(d){ return d.name })
-    //       .datum(function(d) { return {name: d.name, value: d.values[d.values.length - 1]}; }) // keep only the last value of each time series
-    //       .attr("transform", function(d) { return "translate(" + x(d.value.Row) + "," + y(d.value.Mean) + ")"; }) // Put the text at the position of the last point
-    //       .attr("x", 12) // shift the text a bit more right
-    //       .text(function(d) { return d.name; })
-    //       .style("fill", function(d){ return myColor(d.name) })
-    //       .style("font-size", 15)
+    // Add legend
     var colors = ["#5A39AC", "#BF9C00", "#279DFF", "#FF5733", "#f2bd0c", "#67D500"]
     var legendRectSize = 20;
     var legendSpacing = 55;
@@ -147,27 +123,23 @@ d3.csv("data/austria3.csv", function(data) {
             var vert = i * d_height - offset;
                 return 'translate(' + horz + ',' + vert + ')';
         });
-
     
     legend.append('rect')
         .style('fill', myColor)
         .style('stroke', myColor)
         .style("opacity", 1)
         .attr("x", age_width - legendSpacing)
-        .attr("y", function(d,i){ return 140 + i*(size+5)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("y", function(d,i){ return 140 + i*(size+5)}) 
         .attr('width', '20px')
         .attr('height', '20px');
-
 
     legend.append('text')
         .attr('class', 'rect-legend')
         .style("fill","#66605c")
         .attr("x", age_width - legendSpacing + size*5)
-        .attr("y", function(d,i){ return 140 + i*(size+5)+ (size*2.8)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("y", function(d,i){ return 140 + i*(size+5)+ (size*2.8)}) 
         .style("text-anchor", "left")
         .text(function (d, i) {
-            // var subgroupName = d3.select(this.parentNode).datum().key; // This was the tricky part
-            // return subgroupName;
             switch (i) {
                 case 0: return "Fats & oils";
                 case 1: return "Carbohydrates";
@@ -175,83 +147,6 @@ d3.csv("data/austria3.csv", function(data) {
                 case 3: return "Meats";
                 case 4: return "Milk and dairy";
                 case 5: return "Vegetables";
-
             }
           });
-      
-
-    // // Add a legend (interactive)
-    // age_svg
-    //   .selectAll("myLegend")
-    //   .data(dataReady)
-    //   .enter()
-    //     .append('g')
-    //     .attr("class", "ageLegend")
-    //     .append("text")
-    //       .attr('x', function(d,i){ return 40 + i*100})
-    //       .attr('y', 10)
-    //       .text(function(d) { return d.name; })
-    //       .style("fill", function(d){ return myColor(d.name) })
-    //       .style("font-size", 15)
-    //       .style("text-anchor", "middle")
-    //     .on("click", function(d){
-    //       // is the element currently visible ?
-    //       currentOpacity = d3.selectAll("." + d.name).style("opacity")
-    //       // Change the opacity: from 0 to 1 or from 1 to 0
-    //       d3.selectAll("." + d.name).transition().style("opacity", currentOpacity == 1 ? 0:1)
-    //     })
-    function updatePlot(dataName, evt) {
-      currentOpacity = d3.selectAll("." + dataName).style("opacity")
-      // Change the opacity: from 0 to 1 or from 1 to 0
-      d3.selectAll("." + dataName).transition().style("opacity", currentOpacity == 1 ? 0:1);
-
-      // d3.selectAll(".checkbox").each(function(d){
-      //   cb = d3.select(this);
-      //   pr = d3.select(this.parentNode);
-      //   // If the box is check, I show the group
-      //   if(cb.property("checked")){
-      //     evt.currentTarget.className += " active";
-      //   // Otherwise I hide it
-      //   }else{
-      //     evt.currentTarget.className = evt.currentTarget.className.replace(" active", "");
-      //   }
-      // })
-       
-    }
-    
-    d3.select(".checkbox#fat3")
-    .on("change", function () {
-      updatePlot("Fats", event);      
-    })
-
-    d3.select(".checkbox#carb3")
-    .on("change", function () {
-      updatePlot("Carbohydrates", event);      
-    })
-
-    d3.select(".checkbox#fruit3")
-    .on("change", function () {
-      updatePlot("Fruit", event);      
-    })
-
-    d3.select(".checkbox#milk3")
-    .on("change", function () {
-      updatePlot("Milk", event);      
-    })
-
-    d3.select(".checkbox#meat3")
-    .on("change", function () {
-      updatePlot("Meats", event);      
-    })
-
-    d3.select(".checkbox#veg3")
-    .on("change", function () {
-      updatePlot("Vegetables", event);      
-    })
-
-    d3.select("button#fat2")
-      .on("click", function () {
-        updatePlot("Fats", event);      
-      })
-
 })

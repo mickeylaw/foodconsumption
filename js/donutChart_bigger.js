@@ -62,8 +62,7 @@ var ukData = [{Country: "United Kingdom", FoodexL1: "Fats & oils", Mean: 14, tot
                 {Country: "United Kingdom", FoodexL1: "Milk & dairy", Mean: 199, total: 966},
                 {Country: "United Kingdom", FoodexL1: "Vegetables", Mean: 178, total: 966}]                
 
-
-
+// Set the dimensions, radius and color palette
 var d_width = 300;
 var d_height = 440;
 var d_radius = (Math.min(d_width, d_height)*0.95) / 2;
@@ -71,6 +70,7 @@ var donutWidth = 65;
 var color = d3.scaleOrdinal()
     .range(["#5A39AC", "#AF996A", "#279DFF", "#FF5733", "#f2bd0c", "#67D500"]);
 
+// Append the svg object to the body of the page
 var svg = d3.select('#donut')
     .append('svg')
     .attr('width', d_width)
@@ -79,6 +79,7 @@ var svg = d3.select('#donut')
     .attr('transform', 'translate(' + (d_width * 0.85) +
         ',' + (d_height * 0.55 ) + ')');
 
+// Set the arc
 var arc = d3.arc()
     .innerRadius(d_radius - donutWidth)
     .outerRadius(d_radius);
@@ -93,9 +94,7 @@ var pie = d3.pie()
     })
     .sort(null);
 
-var legendRectSize = 13;
-var legendSpacing = 7;
-
+// Add tooltip
 var donutTip = d3.select("body").append("div")
     .attr("class", "donut-tip")
     .style("opacity", 0);
@@ -117,9 +116,7 @@ var path = svg.selectAll('path')
         donutTip.transition()
             .duration(50)
             .style("opacity", 1);
-        // let num = (Math.round((d.data.Mean / d.data.total) * 100)).toString() + '%';
         var subgroupValue = d.data.Mean;
-        //var subgroupName = d.data.FoodexL1;
         donutTip.html(subgroupValue + " grams")
             .style("left", (d3.event.pageX + 10) + "px")
             .style("top", (d3.event.pageY - 40) + "px");
@@ -144,27 +141,13 @@ var path = svg.selectAll('path')
             .style("opacity", 0);
     });
 
+// Add legend
+var legendRectSize = 13;
+var legendSpacing = 7;
 
 var legend = svg.selectAll('.legend')
    .data(pie(austriaData))
    .enter()
-// .append('g')
-//    .attr('class', 'circle-legend')
-//    .attr('transform', function (d, i) {
-//        var d_height = legendRectSize;
-//        var offset = d_height * color.domain().length / 2;
-// var horz = -2* legendRectSize ;
-//        var vert = i * d_height - offset;
-//        return 'translate(' + horz + ',' + vert + ')';
-//    });
-
-// legend.append('circle')
-//    .style('fill', color)
-//    .style('stroke', color)
-//    .style("opacity", 1)
-//    .attr('cx', 0)
-//    .attr('cy', 0)
-//    .attr('r', '.5rem');
 
 legend.append('text')
 .attr('class', 'c-legend')
@@ -183,20 +166,7 @@ legend.append('text')
    .style("text-anchor", "middle")
       .text("Grams per person");
 
-// Now add the annotation. Use the centroid method to get the best coordinates
-
-//var annotation = svg.selectAll('.annotation')
-//.data(pie(austriaData))
-//  .enter()
-//  .append('g')
-//  .attr('class', 'circle-legend')
-//  .attr('transform', function(d) { return "translate(" + outerarc.centroid(d) + ")";  });
-  
-//annotation.append('text')
-//.text(function (d) {return d.data.FoodexL1})
-//    .style("text-anchor", "middle")
-//    .style("font-size", 12);
-
+// Add annotation
 function midAngle(d){
 		return d.startAngle + (d.endAngle - d.startAngle)/2;
 	}
@@ -249,46 +219,7 @@ annotation
     annotation.exit()
     .remove();
 
-    //    .attr("dy", ".35em")
-    //    .text(function (d) {return d.data.FoodexL1})
-        //.style("text-anchor", "middle")
-    //    .style("font-size", 12)
-    //    .attr('transform', function(d) {
-    //        var pos = outerarc.centroid(d);
-    //        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-    //        pos[0] = d_radius * 0.99 * (midangle < Math.PI ? 1 : -1);
-    //        return 'translate(' + pos + ')';
-    //    })
-    //    .style('text-anchor', function(d) {
-    //        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-    //        return (midangle < Math.PI ? 'start' : 'end')
-    //    })
-
-//annotation.transition().duration(1000)
-//    .attrTween("transform", function(d) {
-//    this._current = this._current || d;
-//    var interpolate = d3.interpolate(this._current, d);
-//    this._current = interpolate(0);
-//    return function(t) {
-//        var d2 = interpolate(t);
-//        var pos = outerarc.centroid(d2);
-//        pos[0] = d_radius * (midAngle(d2) < Math.PI ? 1 : -1);
-//        return "translate("+ pos +")";
-//    };
-//})
-//    .attrTween("text-anchor", function(d){
- //       this._current = this._current || d;
-//        var interpolate = d3.interpolate(this._current, d);
-//        this._current = interpolate(0);
-//        return function(t) {
-//            var d2 = interpolate(t);
- //           return midAngle(d2) < Math.PI ? "start":"end";
- //       };			
-//    });
-
-
-
-
+// Function to change the donut plot
 function change(data, countryName, evt) {
     var pie = d3.pie()
         .value(function (d) {
@@ -308,23 +239,11 @@ function change(data, countryName, evt) {
         .outerRadius(radius);
     path.transition().duration(1000).attr("d", arc); // redrawing the path with a smooth transition
 
-    // var i, x, tablinks;
-    // x = document.getElementsByClassName("country");
-
-    // tablinks = document.getElementsByClassName("country");
-    // for (i = 0; i < x.length; i++) {
-    //   tablinks[i].className = tablinks[i].className.replace(" active", "");
-    // }
-    // document.getElementById(countryName).style.display = "block";
-    // evt.currentTarget.className += " active";
-
     svg.selectAll("text").remove();
 
     var legend = svg.selectAll('.legend')
         .data(pie)
         .enter()
-
-    var textWidth = legend.data.client
 
    legend.append('text')
         .attr('class', 'c-legend')
@@ -346,7 +265,6 @@ function change(data, countryName, evt) {
     var annotation = svg.selectAll('.annotation')
         .data(pie)
         .enter()
-
 
     annotation
         
@@ -384,9 +302,7 @@ function change(data, countryName, evt) {
        .text(function(d) {
             let num = (Math.round((d.data.Mean / d.data.total) * 100)).toString() + '%';
             return num ;
-    })
-    ;
-
+    });
 
     annotation
         .exit()
@@ -394,7 +310,7 @@ function change(data, countryName, evt) {
 
 }
 
-
+// Function to change the bar plot
 function changeBarplot(foodSeg) {
     var i, x, tablinks;
     x = document.getElementsByClassName("group-item");
@@ -404,8 +320,6 @@ function changeBarplot(foodSeg) {
       tablinks[i].style.display = "none";
     }
     document.getElementById(foodSeg).style.display = "block";
-    // evt.currentTarget.className += " active";
-
 }
 
 
@@ -438,43 +352,6 @@ d3.select("path#seg5")
 .on("click", function () {
     changeBarplot("veg-seg")
     });
-
-// d3.select("button#Austria")
-// .on("click", function () {
-//     change(austriaData, "Austria", event);    
-// })
-// d3.select("button#Belgium")
-// .on("click", function () {
-//     change(belgiumData, "Belgium" ,event);
-// })
-// d3.select("button#Denmark")
-// .on("click", function () {
-//     change(denmarkData, "Denmark", event);
-// })
-// d3.select("button#France")
-// .on("click", function () {
-//     change(franceData, "France", event);
-// })
-// d3.select("button#Germany")
-// .on("click", function () {
-//     change(germanyData, "Germany", event);
-// })
-// d3.select("button#Italy")
-// .on("click", function () {
-//     change(italyData, "Italy", event);
-// })
-// d3.select("button#Netherlands")
-// .on("click", function () {
-//     change(netherlandsData, "Netherlands", event);
-// })
-// d3.select("button#Sweden")
-// .on("click", function () {
-//     change(swedenData, "Sweden", event);
-// })
-// d3.select("button#UnitedKingdom")
-// .on("click", function () {
-//     change(ukData, "UnitedKingdom", event);
-// })
 
 
 
