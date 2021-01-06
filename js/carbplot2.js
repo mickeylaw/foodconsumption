@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
-var c_margin = {top: 10, right: 400, bottom: 70, left: 30},
+var c_margin = {top: 10, right: 350, bottom: 50, left: 100},
     c_width = 900 - c_margin.left - c_margin.right,
-    c_height = 350 - c_margin.top - c_margin.bottom;
+    c_height = 250 - c_margin.top - c_margin.bottom;
 
 // append the svg object to the body of the page
 var carb_svg = d3.select("#carb_chart")
@@ -122,7 +122,7 @@ d3.csv("data/allcarbs.csv", function(data) {
         .on("mouseleave", mouseleave)
 
     var legendRectSize = 20;
-    var legendSpacing = 100;
+    var legendSpacing = 70;
     var size = 20
     var legend = carb_svg.selectAll('.legend')
         .data(colors)
@@ -142,7 +142,7 @@ d3.csv("data/allcarbs.csv", function(data) {
         .style('stroke', "grey")
         .style("opacity", 1)
         .attr("x", c_width + legendSpacing)
-        .attr("y", function(d,i){ return 100 + i*(size+5)}) 
+        .attr("y", function(d,i){ return 70 + i*(size+5)}) 
         .attr('width', '20px')
         .attr('height', '20px');
 
@@ -151,7 +151,7 @@ d3.csv("data/allcarbs.csv", function(data) {
         .attr('class', 'rect-legend')
         .style("fill","#66605c")
         .attr("x", c_width + legendSpacing + size*1.5)
-        .attr("y", function(d,i){ return 100 + i*(size+5)+ (size/1.2)}) 
+        .attr("y", function(d,i){ return 70 + i*(size+5)+ (size/1.2)}) 
         .style("text-anchor", "left")
         .text(function (d, i) {
             switch (i) {

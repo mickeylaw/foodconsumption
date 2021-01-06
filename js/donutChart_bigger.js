@@ -160,7 +160,7 @@ legend.append('text')
    });
 legend.append('text')
    .attr('class', 'gram')
-   .style("fill","#8F939B")
+   .style("fill","#8e8e8e")
    .attr('x', legendRectSize - 1.8*legendSpacing)
    .attr('y', legendRectSize + legendSpacing)
    .style("text-anchor", "middle")
@@ -184,11 +184,11 @@ annotation
     .append('text')
       //.style('text-anchor','middle')
       .attr("dy", "0em")
-      .style("fill","#66605c")
-      .style("font-weight","bold")
+      .style("fill","#4a4a4a")
+      .style("font-weight","600")
       .attr("transform", function(d, i) {
         var one = newarc.centroid(d)[0]*2.4;
-        var two = newarc.centroid(d)[1]*2.3;
+        var two = newarc.centroid(d)[1]*2.4;
         return `translate(${one},${two})`;
       })
       .style('text-anchor', function(d) {
@@ -199,12 +199,13 @@ annotation
         return d.data.FoodexL1;
     })
     annotation.append('text')
-        .attr("dy", "1.2em")
-        .style("fill","#66605c")
-        .style("font-weight","bold")
+        .attr("dy", "1.4em")
+        .attr('class', 'percentage')
+        .style("fill","#4a4a4a")
+        .style("font-weight","800")
         .attr("transform", function(d, i) {
           var one = newarc.centroid(d)[0]*2.4;
-          var two = newarc.centroid(d)[1]*2.3;
+          var two = newarc.centroid(d)[1]*2.4;
           return `translate(${one},${two})`;
         })
         .style('text-anchor', function(d) {
@@ -256,7 +257,7 @@ function change(data, countryName, evt) {
         });
     legend.append('text')
         .attr('class', 'gram')
-        .style("fill","#8F939B")
+        .style("fill","#4a4a4a")
         .attr('x', legendRectSize - 1.8*legendSpacing)
         .attr('y', legendRectSize + legendSpacing)
         .style("text-anchor", "middle")
@@ -271,11 +272,11 @@ function change(data, countryName, evt) {
         .append('text')
         .attr("dy", "0em")
         //.style('text-anchor','middle')
-        .style("fill","#66605c")
-        .style("font-weight","bold")
+        .style("fill","#4a4a4a")
+        .style("font-weight","600")
         .attr("transform", function(d, i) {
             var one = newarc.centroid(d)[0]*2.4;
-            var two = newarc.centroid(d)[1]*2.3;
+            var two = newarc.centroid(d)[1]*2.4;
             return `translate(${one},${two})`;
         })
         .style('text-anchor', function(d) {
@@ -287,12 +288,13 @@ function change(data, countryName, evt) {
             });
 
     annotation.append('text')
-        .attr("dy", "1.2em")
-        .style("fill","#66605c")
-        .style("font-weight","bold")
+        .attr("dy", "1.4em")
+        .attr('class', 'percentage')
+        .style("fill","#4a4a4a")
+        .style("font-weight","800")
         .attr("transform", function(d, i) {
           var one = newarc.centroid(d)[0]*2.4;
-          var two = newarc.centroid(d)[1]*2.3;
+          var two = newarc.centroid(d)[1]*2.4;
           return `translate(${one},${two})`;
         })
         .style('text-anchor', function(d) {

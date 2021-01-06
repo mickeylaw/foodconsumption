@@ -21,15 +21,25 @@ function update_age(foodSeg, countryName, evt) {
     }
     
 
-d3.select("button#Austria2")
-    .on("click", function () {
+// d3.select("button#Austria2")
+//     .on("click", function () {
+//     update_age("austria_ageplot", "Austria2", event);      
+//     })
+
+d3.select("a#Austria2").on("click", function () {
     update_age("austria_ageplot", "Austria2", event);      
     })
 
-d3.select("button#Belgium2")
+d3.select("a#Belgium2")
     .on("click", function () {
     update_age("belgium_ageplot", "Belgium2", event);      
     })
+
+
+// d3.select("button#Belgium2")
+//     .on("click", function () {
+//     update_age("belgium_ageplot", "Belgium2", event);      
+//     })
 
 
 d3.select("button#Germany2")

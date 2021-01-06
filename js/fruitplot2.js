@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
-var f_margin = {top: 10, right: 400, bottom: 70, left: 30},
+var f_margin = {top: 10, right: 350, bottom: 50, left: 100},
     f_width = 900 - f_margin.left - f_margin.right,
-    f_height = 350 - f_margin.top - f_margin.bottom;
+    f_height = 250 - f_margin.top - f_margin.bottom;
 
 // append the svg object to the body of the page
 var fruit_svg = d3.select("#fruit_chart")
@@ -125,7 +125,7 @@ d3.csv("data/allfruit.csv", function(data) {
         .on("mouseleave", mouseleave)
 
     var legendRectSize = 20;
-    var legendSpacing = 100;
+    var legendSpacing = 70;
     var size = 20
     var legend = fruit_svg.selectAll('.legend')
         .data(colors)
@@ -145,7 +145,7 @@ d3.csv("data/allfruit.csv", function(data) {
         .style('stroke', "grey")
         .style("opacity", 1)
         .attr("x", f_width + legendSpacing)
-        .attr("y", function(d,i){ return 100 + i*(size+5)}) 
+        .attr("y", function(d,i){ return 70 + i*(size+5)}) 
         .attr('width', '20px')
         .attr('height', '20px');
 
@@ -153,7 +153,7 @@ d3.csv("data/allfruit.csv", function(data) {
         .attr('class', 'rect-legend')
         .style("fill","#66605c")
         .attr("x", f_width + legendSpacing + size*1.5)
-        .attr("y", function(d,i){ return 100 + i*(size+5)+ (size/1.2)})
+        .attr("y", function(d,i){ return 70 + i*(size+5)+ (size/1.2)})
         .style("text-anchor", "left")
         .text(function (d, i) {
             switch (i) {

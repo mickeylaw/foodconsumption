@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
-var bp_margin = {top: 30, right: 25, bottom: 30, left: 40},
-    bp_width = 700 - bp_margin.left - bp_margin.right,
-    bp_height = 400 - bp_margin.top - bp_margin.bottom;
+var bp_margin = {top: 30, right: 25, bottom: 30, left: 140},
+    bp_width = 800 - bp_margin.left - bp_margin.right,
+    bp_height = 530 - bp_margin.top - bp_margin.bottom;
 
 // append the svg object to the body of the page
 var carb_bp_svg = d3.select("#carb_boxplot")

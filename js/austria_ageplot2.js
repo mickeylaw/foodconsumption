@@ -1,6 +1,6 @@
 // set the dimensions and margins of the graph
-var age_margin = {top: 10, right: 25, bottom: 30, left: 40},
-    age_width = 700 - age_margin.left - age_margin.right,
+var age_margin = {top: 10, right: 25, bottom: 30, left: 140},
+    age_width = 800 - age_margin.left - age_margin.right,
     age_height = 530 - age_margin.top - age_margin.bottom;
 
 // append the svg object to the body of the page
