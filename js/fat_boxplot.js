@@ -127,16 +127,16 @@ d3.csv("data/fat_full_data.csv", rowConverter, function(data) {
       .style("width", 80)
 
   // Add title    
-  var title = fat_bp_svg
-    .selectAll(".bpTitle")
-    .data(sumstat)
-    .enter()
+  // var title = fat_bp_svg
+  //   .selectAll(".bpTitle")
+  //   .data(sumstat)
+  //   .enter()
 
-  title.append("text")
-    .attr("class", "bpTitle")
-    .style("fill","#5A39AC")
-    .attr('x', bp_width/2)
-    .attr('y', bp_margin.top -10)
-    .style("text-anchor", "middle")
-        .text("Fats and oil");
+  // title.append("text")
+  //   .attr("class", "bpTitle")
+  //   .style("fill","#5A39AC")
+  //   .attr('x', bp_width/2)
+  //   .attr('y', bp_margin.top -10)
+  //   .style("text-anchor", "middle")
+  //       .text("Fats and oil");
 })

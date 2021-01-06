@@ -127,16 +127,16 @@ d3.csv("data/meat_full_data.csv", rowConverter, function(data) {
       .style("width", 80)
 
   // Add title    
-  var title = meat_bp_svg
-    .selectAll(".bpTitle")
-    .data(sumstat)
-    .enter()
+  // var title = meat_bp_svg
+  //   .selectAll(".bpTitle")
+  //   .data(sumstat)
+  //   .enter()
 
-  title.append("text")
-    .attr("class", "bpTitle")
-    .style("fill","#FF5733")
-    .attr('x', bp_width/2)
-    .attr('y', bp_margin.top -10)
-    .style("text-anchor", "middle")
-        .text("Meat");
+  // title.append("text")
+  //   .attr("class", "bpTitle")
+  //   .style("fill","#FF5733")
+  //   .attr('x', bp_width/2)
+  //   .attr('y', bp_margin.top -10)
+  //   .style("text-anchor", "middle")
+  //       .text("Meat");
 })

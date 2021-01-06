@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-var c_margin = {top: 10, right: 350, bottom: 50, left: 100},
+var c_margin = {top: 10, right: 350, bottom: 30, left: 100},
     c_width = 900 - c_margin.left - c_margin.right,
     c_height = 250 - c_margin.top - c_margin.bottom;
 

@@ -127,16 +127,16 @@ d3.csv("data/veg_full_data.csv", rowConverter, function(data) {
       .style("width", 80)
 
   // Add title    
-  var title = veg_bp_svg
-    .selectAll(".bpTitle")
-    .data(sumstat)
-    .enter()
+  // var title = veg_bp_svg
+  //   .selectAll(".bpTitle")
+  //   .data(sumstat)
+  //   .enter()
 
-  title.append("text")
-    .attr("class", "bpTitle")
-    .style("fill","#67D500")
-    .attr('x', bp_width/2)
-    .attr('y', bp_margin.top -10)
-    .style("text-anchor", "middle")
-        .text("Vegetables");
+  // title.append("text")
+  //   .attr("class", "bpTitle")
+  //   .style("fill","#67D500")
+  //   .attr('x', bp_width/2)
+  //   .attr('y', bp_margin.top -10)
+  //   .style("text-anchor", "middle")
+  //       .text("Vegetables");
 })

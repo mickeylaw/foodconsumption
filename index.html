@@ -23,8 +23,11 @@
         <div class="dashboard" style = "display: block;" id="overallview">
             <div class="overallfood mx-sm-auto mx-0 col-lg-8 col-12px-0 text-center">
                 <!-- <h1 class="mb-0 mt-4 col-lg-12 text-center ">Daily Food Consumption in 9 European Countries</h1> -->
-
+                
                 <div class = "wrapper">
+                    <div class="ageplot-title">
+                        <h1 class="mb-0 mt-4 text-left">What Europeans Eat?</h1>
+                    </div>
 
                     <div id="donut" class="donut mx-0 px-0 col-6 text-center"></div>
 
@@ -38,52 +41,52 @@
             <div class="foodgroup mx-sm-auto mx-0 col-lg-8 col-12px-0 text-center">
                 <div class = "wrapper">
                     <div class="foodgroup-wrapper">
-                        <div class="group-item mt-2" style = "display: block;" id = "carb-seg">
+                        <div class="group-item" style = "display: block;" id = "carb-seg">
                             <div class = "wrapper-foodgroup">
                                 <div id="carb_chart">
-                                    <h3 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #AF996A;">Carbohydrates</h3>
+                                    <h4 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #AF996A;">Carbohydrates</h4>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="group-item mt-2" style = "display: none;" id = "meat-seg">
+                        <div class="group-item" style = "display: none;" id = "meat-seg">
                             <div class = "wrapper-foodgroup">
                                 <div id="meat_chart">
-                                    <h3 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #FF5733;">Meat</h3>
+                                    <h4 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #FF5733;">Meat</h4>
 
                                 </div>
                             </div>
                         </div>
 
-                        <div class="group-item mt-2" style = "display: none;" id = "fruit-seg">
+                        <div class="group-item" style = "display: none;" id = "fruit-seg">
                             <div class = "wrapper-foodgroup">
                                 <div id="fruit_chart">
-                                    <h3 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #279DFF">Fruits</h3>
+                                    <h4 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #279DFF">Fruits</h4>
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="group-item mt-2" style = "display: none;" id = "veg-seg">
+                        <div class="group-item" style = "display: none;" id = "veg-seg">
                             <div class = "wrapper-foodgroup">
                                 <div id="veg_chart">
-                                    <h3 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #67D500">Vegetables</h3>
+                                    <h4 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #67D500">Vegetables</h4>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="group-item mt-2" style = "display: none;" id = "milk-seg">
+                        <div class="group-item" style = "display: none;" id = "milk-seg">
                             <div class = "wrapper-foodgroup">
                                 <div id="milk_chart">
-                                    <h3 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #f2bd0c">Milk and dairy</h3>
+                                    <h4 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #f2bd0c">Milk and dairy</h4>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="group-item mt-2" style = "display: none;" id = "fat-seg">
+                        <div class="group-item" style = "display: none;" id = "fat-seg">
                             <div class = "wrapper-foodgroup">
                                 <div id="fat_chart">
-                                    <h3 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #5A39AC">Fats and oils</h3>
+                                    <h4 class="mb-0 mt-0 col-lg-9 text-center" style = "color: #5A39AC">Fats and oils</h4>
                                 </div>
                             </div>
                         </div>
@@ -94,11 +97,14 @@
         
         <div class="dashboard" style = "display: none;" id="byageview">
             <div class="allAgeplot mx-sm-auto mx-0 col-lg-12 col-12px-0 text-center">
-                <h1 class="mb-0 mt-4 text-center ">Food Consumption by Age</h1>
-
-                <h4 class="mt-4 mb-4 text-center">Grams per person</h4>
+                <!-- <h1 class="mb-0 mt-4 text-left">Food Consumption by Age</h1>
+                <h4 class="mt-4 mb-4 text-center">Grams per person</h4> -->
                 <div class = "age-wrapper">
-
+                    <div class="ageplot-title">
+                        <h1 class="mb-0 mt-4 text-left">What Different Age Groups Eat?</h1>
+                        <h3 class="mt-4 mb-4 text-left">Grams per person</h3>
+                    </div>
+                    
                     <nav class="country-nav" id="overallButtons2">
                         <a id="Austria2" class="country-nav__button country2 agetablink active" onclick="update_age('austria_ageplot', 'Austria2', event)" href="#austria_ageplot">Austria</a>
                         <a id="Belgium2" class="country-nav__button country2 agetablink" onclick="update_age('belgium_ageplot', 'Belgium2', event)" href="#belgium_ageplot">Belgium</a>
@@ -138,10 +144,15 @@
 
         <div class="dashboard" style = "display: none;" id="consumptionrangeview">
             <div class="boxplotall mx-sm-auto mx-0 col-lg-12 col-12px-0  text-center">
-                <h1 class="mb-0 mt-4 text-center ">Consumption Range of Six Major Food Groups</h1>
-                <h4 class="mt-4 mb-4 text-center">Grams per person</h4>
+                <!-- <h1 class="mb-0 mt-4 text-center ">Consumption Range of Six Major Food Groups</h1>
+                <h4 class="mt-4 mb-4 text-center">Grams per person</h4> -->
 
                 <div class = "age-wrapper">
+                    <div class="boxplot-title">
+                        <h1 class="mb-0 mt-4 text-left">What is the Consumption Range?</h1>
+                        <h3 class="mt-4 mb-4 text-left">Grams per person</h3>
+                    </div>
+
                     <nav class="foodgroup-nav" id="overallButtons3">
                         <a id="bp-carb-btn" class="foodgroup-nav__button foodgp fdgtablink active" onclick="update_box('carb_boxplot', 'bp-carb-btn', event)" href="#carb_boxplot">Carbohydrates</a>
                         <a id="bp-fruit-btn" class="foodgroup-nav__button foodgp fdgtablink" onclick="update_box('fruit_boxplot', 'bp-fruit-btn', event)" href="#fruit_boxplot">Fruits</a>

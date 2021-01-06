@@ -1,5 +1,5 @@
 // set the dimensions and margins of the graph
-var bp_margin = {top: 30, right: 25, bottom: 30, left: 140},
+var bp_margin = {top: 0, right: 25, bottom: 30, left: 140},
     bp_width = 800 - bp_margin.left - bp_margin.right,
     bp_height = 530 - bp_margin.top - bp_margin.bottom;
 
@@ -127,16 +127,16 @@ d3.csv("data/carb_full_data.csv", rowConverter, function(data) {
       .style("width", 80)
 
   // Add title    
-  var title = carb_bp_svg
-    .selectAll(".bpTitle")
-    .data(sumstat)
-    .enter()
+  // var title = carb_bp_svg
+  //   .selectAll(".bpTitle")
+  //   .data(sumstat)
+  //   .enter()
 
-  title.append("text")
-    .attr("class", "bpTitle")
-    .style("fill","#AF996A")
-    .attr('x', bp_width/2)
-    .attr('y', bp_margin.top -10)
-    .style("text-anchor", "middle")
-        .text("Carbohydrates");
+  // title.append("text")
+  //   .attr("class", "bpTitle")
+  //   .style("fill","#AF996A")
+  //   .attr('x', bp_width/2)
+  //   .attr('y', bp_margin.top -10)
+  //   .style("text-anchor", "middle")
+  //       .text("Carbohydrates");
 })
