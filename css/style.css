@@ -94,7 +94,7 @@ label{font-family:'Open Sans', sans-serif; font-size: 14px; font-weight:400 ;mar
 
 .bpTitle {font-size: 18px;}
 
-.top-nav {display: flex; justify-content: center;font-family:'Open Sans', sans-serif; font-size: 14px; font-weight:700 ; overflow: hidden; background-color: #fff; width: 100%; min-width:800px; position: fixed; top: 0; align-items: center;}
+.top-nav {display: flex; justify-content: center;font-family:'Open Sans', sans-serif; font-size: 14px; font-weight:700 ; overflow: hidden; background-color: #fff; width: 100%; min-width:900px; position: fixed; top: 0; align-items: center;}
 
 .top-nav a {
     float: left;
@@ -138,7 +138,7 @@ label{font-family:'Open Sans', sans-serif; font-size: 14px; font-weight:400 ;mar
     /* padding: 20px 20px; */
     width: 180px;
     position: fixed;
-    top: 50%;
+    top: 465px;
     transform: translate(0,-50%);
     background-color: #ffffff;
     transition: 0.3s;
@@ -196,7 +196,7 @@ nav.country-nav a.active {
     /* padding: 20px 20px; */
     width: 180px;
     position: fixed;
-    top: 40.5%;
+    top: 375px;
     transform: translate(0,-50%);
     background-color: #ffffff;
     transition: 0.3s;

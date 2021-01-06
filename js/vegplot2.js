@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var v_margin = {top: 10, right: 350, bottom: 30, left: 100},
     v_width = 900 - v_margin.left - v_margin.right,
-    v_height = 250 - v_margin.top - v_margin.bottom;
+    v_height = 230 - v_margin.top - v_margin.bottom;
 
 // append the svg object to the body of the page
 var veg_svg = d3.select("#veg_chart")

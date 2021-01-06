@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var f_margin = {top: 10, right: 350, bottom: 30, left: 100},
     f_width = 900 - f_margin.left - f_margin.right,
-    f_height = 250 - f_margin.top - f_margin.bottom;
+    f_height = 230 - f_margin.top - f_margin.bottom;
 
 // append the svg object to the body of the page
 var fruit_svg = d3.select("#fruit_chart")

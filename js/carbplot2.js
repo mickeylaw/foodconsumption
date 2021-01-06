@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var c_margin = {top: 10, right: 350, bottom: 30, left: 100},
     c_width = 900 - c_margin.left - c_margin.right,
-    c_height = 250 - c_margin.top - c_margin.bottom;
+    c_height = 230 - c_margin.top - c_margin.bottom;
 
 // append the svg object to the body of the page
 var carb_svg = d3.select("#carb_chart")
